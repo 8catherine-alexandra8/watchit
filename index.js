@@ -6,6 +6,11 @@
 const debounce = require('lodash.debounce');
 //require in the chokidar package
 const chokidar = require('chokidar');
+//require caporal.  Calling it program rather than caporal because
+//caporals job is to return an object that represents the program
+//itself. So program will make a lot more sense to anyone
+//reading the code, deciphering what it's doing.
+const program = require('caporal');
 //declare start function that will eventually be used to start
 //up a user's code. It's not doing anything yet except console
 //logging a phrase.  The function is wrapped in debounce to keep it
