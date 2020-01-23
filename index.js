@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+//require debounce package so that whenever we want to stop a function
+//from being called too often, we can pass that function into the
+//debounce function
+const debounce = require('lodash.debounce');
 //require in the chokidar package
 const chokidar = require('chokidar');
 
