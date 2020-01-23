@@ -26,7 +26,10 @@ chokidar
 	//this function will occur both when a file is added, but
 	//also the first time our program is opened each time
 	//and chokidar sees all the files that are in it
-	.on('add', () => console.log('FILE ADDED'))
+	//.on('add', () => console.log('FILE ADDED'))
+	//replaced callback from above function with the start
+	//function passed in as the second argument
+	.on('add', start)
 	.on('change', () => console.log('FILE CHANGED'))
 	//this is called when a file is deleted
 	.on('unlink', () => console.log('FILE UNLINKED'));
