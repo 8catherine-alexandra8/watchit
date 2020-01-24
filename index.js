@@ -29,7 +29,19 @@ program
 	//can move on to chaining on the action call to invoke the program
 	//the first argument that action will receive is args, which will
 	//be an object of all the different arguments that were provided
-	.action((args) => {
+	//since filename is the only argument, we can pass in filename
+	//destructured from the args object, rather than passing in the
+	//whole args object
+	.action(({ filename }) => {
+		//check to see if user entered a filename so that we can
+		//default to index.js if no filename was entered by user.
+		//Also need to ensure that entered filename actually
+		//exists within the directory so that we can show an error
+		//if the file doesn't exist in the directory.
+		const name = filename || 'index.js';
+		//use the promise based version of the built in access method
+		//to check program for the filename specified by the user
+
 		//declare start function that will eventually be used to start
 		//up a user's code. It's not doing anything yet except console
 		//logging a phrase.  The function is wrapped in debounce to keep it
