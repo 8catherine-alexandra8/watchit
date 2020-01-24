@@ -43,7 +43,7 @@ program
 		const name = filename || 'index.js';
 		//use the promise based version of the built in access method
 		//to check program for the filename specified by the user
-
+        await fs.promises.access(name);
 		//declare start function that will eventually be used to start
 		//up a user's code. It's not doing anything yet except console
 		//logging a phrase.  The function is wrapped in debounce to keep it
