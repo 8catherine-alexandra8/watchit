@@ -16,6 +16,8 @@ const fs = require('fs');
 //require in the spawn function of the child processes module
 //so that this program can run a program inside of it.
 const { spawn } = require('child_process');
+//require in chalk to style message to user differently than console logs
+const chalk = require('chalk');
 //following the syntax outlined in the caporal documentation,
 //call prgram and chain on the parts needed
 program
@@ -76,7 +78,9 @@ program
 			}
 			//let user know that previous process ended and new process
 			//is starting now
-			console.log('>>>>>Starting process...');
+			//wrapped this console log in chalk styling to distinguish it
+			//from the program's console log responses
+			console.log(chalk.yellow('>>>>>Starting process...'));
 			//call spawn and pass in the command that I want to run
 			//which is node and the name of the file that I want
 			//to run which is this program or the name of the
