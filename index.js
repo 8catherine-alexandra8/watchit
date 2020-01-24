@@ -58,19 +58,30 @@ program
 			//the issue to the user
 			throw new Error(`Could not find the file ${name}`);
 		}
+		//declare a process variable so that it can be used in the
+		//start function to kill the previously running instance of the
+		//program before restarting it
+		let proc;
 		//declare start function that will eventually be used to start
 		//up a user's code. It will call the spawn function so that
 		//this program can run another program.
 		// The function is wrapped in debounce to keep it
 		//from being called too many times in quick succession
 		const start = debounce(() => {
+			//before running spawn, check to see if proc is already defined
+			if (proc) {
+				//if it is defined, kill the currently running process
+				//before restarting it
+				proc.kill();
+			}
 			//call spawn and pass in the command that I want to run
 			//which is node and the name of the file that I want
 			//to run which is this program or the name of the
 			//program that the user entered.  added stdio option with inherit
 			//so that any console logs or within this child program
-			//will pass to the watchit console to be visible.
-			spawn('node', [ name ], { stdio: 'inherit' });
+			//will pass to the watchit console to be visible.  Assign the
+			//child process object to proc variable
+			proc = spawn('node', [ name ], { stdio: 'inherit' });
 			//added 100ms as second argument to debounce to tell debounce
 			//that I want 100ms to pass, without the add event being
 			//triggered before the start function should actually be
