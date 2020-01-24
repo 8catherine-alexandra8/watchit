@@ -59,11 +59,18 @@ program
 			throw new Error(`Could not find the file ${name}`);
 		}
 		//declare start function that will eventually be used to start
-		//up a user's code. It's not doing anything yet except console
-		//logging a phrase.  The function is wrapped in debounce to keep it
+		//up a user's code. It will call the spawn function so that
+		//this program can run another program.
+		// The function is wrapped in debounce to keep it
 		//from being called too many times in quick succession
 		const start = debounce(() => {
-			console.log('STARTING USERS PROGERAM');
+			//call spawn and pass in the command that I want to run
+			//which is node and the name of the file that I want
+			//to run which is this program or the name of the
+			//program that the user entered.  added stdio option with inherit
+			//so that any console logs or within this child program
+			//will pass to the watchit console to be visible.
+			spawn('node', [ name ], { stdio: 'inherit' });
 			//added 100ms as second argument to debounce to tell debounce
 			//that I want 100ms to pass, without the add event being
 			//triggered before the start function should actually be
