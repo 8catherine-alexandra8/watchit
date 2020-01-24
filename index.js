@@ -11,6 +11,8 @@ const chokidar = require('chokidar');
 //itself. So program will make a lot more sense to anyone
 //reading the code, deciphering what it's doing.
 const program = require('caporal');
+//add in require for fs so that we can access files in hard drive
+const fs = require('fs');
 //following the syntax outlined in the caporal documentation,
 //call prgram and chain on the parts needed
 program
