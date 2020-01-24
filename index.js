@@ -13,6 +13,9 @@ const chokidar = require('chokidar');
 const program = require('caporal');
 //add in require for fs so that we can access files in hard drive
 const fs = require('fs');
+//require in the spawn function of the child processes module
+//so that this program can run a program inside of it.
+const { spawn } = require('child_process');
 //following the syntax outlined in the caporal documentation,
 //call prgram and chain on the parts needed
 program
