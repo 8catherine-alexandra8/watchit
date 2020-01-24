@@ -33,8 +33,9 @@ program
 	//be an object of all the different arguments that were provided
 	//since filename is the only argument, we can pass in filename
 	//destructured from the args object, rather than passing in the
-	//whole args object
-	.action(({ filename }) => {
+	//whole args object.  this function is wrapping an promised function
+	//so need to wrap it in async.
+	.action(async ({ filename }) => {
 		//check to see if user entered a filename so that we can
 		//default to index.js if no filename was entered by user.
 		//Also need to ensure that entered filename actually
@@ -43,7 +44,7 @@ program
 		const name = filename || 'index.js';
 		//use the promise based version of the built in access method
 		//to check program for the filename specified by the user
-        await fs.promises.access(name);
+		await fs.promises.access(name);
 		//declare start function that will eventually be used to start
 		//up a user's code. It's not doing anything yet except console
 		//logging a phrase.  The function is wrapped in debounce to keep it
