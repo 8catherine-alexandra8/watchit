@@ -43,8 +43,18 @@ program
 		//if the file doesn't exist in the directory.
 		const name = filename || 'index.js';
 		//use the promise based version of the built in access method
-		//to check program for the filename specified by the user
-		await fs.promises.access(name);
+		//to check program for the filename specified by the user.
+		//if the name file doesn't exist, then the function below will
+		//error, so wrapping it in try/catch to deal with that
+		try {
+			await fs.promises.access(name);
+		} catch (err) {
+			//if there's an error, I already know that it's because the
+			//file doesn't exist or user doesn't have access to it, so
+			//the only way I need to deal with the error is to explain
+			//the issue to the user
+			throw new Error(`Could not find the file ${name}`);
+		}
 		//declare start function that will eventually be used to start
 		//up a user's code. It's not doing anything yet except console
 		//logging a phrase.  The function is wrapped in debounce to keep it
