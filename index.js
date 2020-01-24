@@ -74,6 +74,9 @@ program
 				//before restarting it
 				proc.kill();
 			}
+			//let user know that previous process ended and new process
+			//is starting now
+			console.log('>>>>>Starting process...');
 			//call spawn and pass in the command that I want to run
 			//which is node and the name of the file that I want
 			//to run which is this program or the name of the
